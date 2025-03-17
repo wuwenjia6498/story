@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事屋 - 播放器</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .player-background {
+            background-color: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .cover-art {
+            width: 280px;
+            height: 280px;
+            border-radius: 20px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 4px;
+            background-color: #eee;
+            border-radius: 2px;
+            position: relative;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background-color: #FF5C5C;
+            border-radius: 2px;
+        }
+        .progress-handle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #FF5C5C;
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .control-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+        .control-button {
+            color: #555;
+            font-size: 24px;
+        }
+        .play-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 32px;
+            background-color: #FF5C5C;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 10px rgba(255, 92, 92, 0.3);
+        }
+        .bottom-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #555;
+        }
+        .action-button i {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .action-button span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="flex items-center">
+            <i class="fas fa-signal mr-1"></i>
+            <i class="fas fa-wifi mr-1"></i>
+        </div>
+        <div>12:30</div>
+        <div class="flex items-center">
+            <i class="fas fa-battery-three-quarters"></i>
+        </div>
+    </div>
+    
+    <!-- 播放器界面 -->
+    <div class="player-background">
+        <!-- 头部导航 -->
+        <div class="flex justify-between items-center mb-6">
+            <button><i class="fas fa-chevron-down text-xl"></i></button>
+            <div class="text-center">
+                <div class="font-semibold">小兔子的梦想</div>
+                <div class="text-sm text-gray-500">故事大王讲述</div>
+            </div>
+            <button><i class="fas fa-ellipsis-h text-xl"></i></button>
+        </div>
+        
+        <!-- 封面 -->
+        <div class="cover-art mb-10">
+            <img src="https://images.unsplash.com/photo-1478940020726-e9e191651f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cover Art" class="w-full h-full object-cover">
+        </div>
+        
+        <!-- 播放进度 -->
+        <div class="flex justify-between text-sm text-gray-500 mb-1">
+            <div>02:45</div>
+            <div>10:00</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+            <div class="progress-handle"></div>
+        </div>
+        
+        <!-- 播放控制 -->
+        <div class="control-buttons">
+            <button class="control-button"><i class="fas fa-random"></i></button>
+            <button class="control-button"><i class="fas fa-step-backward"></i></button>
+            <button class="play-button"><i class="fas fa-pause"></i></button>
+            <button class="control-button"><i class="fas fa-step-forward"></i></button>
+            <button class="control-button"><i class="fas fa-redo"></i></button>
+        </div>
+        
+        <!-- 底部操作 -->
+        <div class="mt-auto">
+            <div class="bottom-actions">
+                <button class="action-button">
+                    <i class="far fa-heart"></i>
+                    <span>收藏</span>
+                </button>
+                <button class="action-button">
+                    <i class="fas fa-download"></i>
+                    <span>下载</span>
+                </button>
+                <button class="action-button">
+                    <i class="fas fa-comment-alt"></i>
+                    <span>评论</span>
+                </button>
+                <button class="action-button">
+                    <i class="fas fa-share-alt"></i>
+                    <span>分享</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

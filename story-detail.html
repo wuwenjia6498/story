@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事屋 - 故事详情</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .cover-image {
+            height: 220px;
+            position: relative;
+        }
+        .cover-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+        }
+        .play-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: #FF5C5C;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(255, 92, 92, 0.3);
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 14px;
+            position: relative;
+        }
+        .tab.active {
+            color: #FF5C5C;
+            font-weight: 600;
+        }
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 25%;
+            right: 25%;
+            height: 3px;
+            background-color: #FF5C5C;
+            border-radius: 3px;
+        }
+        .episode-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .episode-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+<body class="pb-6">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="flex items-center">
+            <i class="fas fa-signal mr-1"></i>
+            <i class="fas fa-wifi mr-1"></i>
+        </div>
+        <div>12:30</div>
+        <div class="flex items-center">
+            <i class="fas fa-battery-three-quarters"></i>
+        </div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <div class="px-4 py-3 bg-white flex items-center">
+        <button class="mr-4"><i class="fas fa-arrow-left"></i></button>
+        <h1 class="text-lg font-bold flex-1">故事详情</h1>
+        <button class="mr-3"><i class="fas fa-share-alt text-gray-600"></i></button>
+    </div>
+    
+    <!-- 封面区域 -->
+    <div class="cover-image">
+        <img src="https://images.unsplash.com/photo-1478940020726-e9e191651f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cover" class="w-full h-full object-cover">
+        <div class="cover-overlay">
+            <div class="text-xl font-bold mb-1">小兔子的梦想</div>
+            <div class="text-sm opacity-90 mb-3">故事大王讲述</div>
+            <div class="flex items-center">
+                <div class="play-button mr-4">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div>
+                    <div class="text-sm">全10集</div>
+                    <div class="text-xs opacity-80">已更新完结</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 故事信息 -->
+    <div class="px-4 py-3 bg-white">
+        <div class="flex justify-between mb-3">
+            <div class="flex items-center">
+                <i class="fas fa-play-circle text-gray-500 mr-1"></i>
+                <span class="text-sm text-gray-500">128万</span>
+            </div>
+            <div class="flex">
+                <button class="flex flex-col items-center mr-6">
+                    <i class="far fa-heart text-gray-500 text-lg"></i>
+                    <span class="text-xs text-gray-500 mt-1">收藏</span>
+                </button>
+                <button class="flex flex-col items-center mr-6">
+                    <i class="fas fa-download text-gray-500 text-lg"></i>
+                    <span class="text-xs text-gray-500 mt-1">下载</span>
+                </button>
+                <button class="flex flex-col items-center">
+                    <i class="far fa-comment-alt text-gray-500 text-lg"></i>
+                    <span class="text-xs text-gray-500 mt-1">评论</span>
+                </button>
+            </div>
+        </div>
+        <div class="text-sm text-gray-700">
+            这是一个关于小兔子追逐梦想的温馨故事。小兔子梦想成为一名伟大的探险家，虽然遇到了许多困难，但在朋友们的帮助下，小兔子最终实现了自己的梦想...
+        </div>
+    </div>
+    
+    <!-- 选项卡 -->
+    <div class="tabs bg-white mt-3">
+        <div class="tab active">
+            <span>章节</span>
+        </div>
+        <div class="tab">
+            <span>详情</span>
+        </div>
+        <div class="tab">
+            <span>评论</span>
+        </div>
+    </div>
+    
+    <!-- 章节列表 -->
+    <div class="px-4 py-3 bg-white">
+        <div class="episode-item">
+            <div class="episode-number">1</div>
+            <div class="flex-1">
+                <div class="font-medium">小兔子的梦想</div>
+                <div class="text-xs text-gray-500 mt-1">10分钟</div>
+            </div>
+            <button class="text-gray-600"><i class="fas fa-play-circle text-xl"></i></button>
+        </div>
+        <div class="episode-item">
+            <div class="episode-number">2</div>
+            <div class="flex-1">
+                <div class="font-medium">第一次探险</div>
+                <div class="text-xs text-gray-500 mt-1">12分钟</div>
+            </div>
+            <button class="text-gray-600"><i class="fas fa-play-circle text-xl"></i></button>
+        </div>
+        <div class="episode-item">
+            <div class="episode-number">3</div>
+            <div class="flex-1">
+                <div class="font-medium">朋友的帮助</div>
+                <div class="text-xs text-gray-500 mt-1">11分钟</div>
+            </div>
+            <button class="text-gray-600"><i class="fas fa-play-circle text-xl"></i></button>
+        </div>
+        <div class="episode-item">
+            <div class="episode-number">4</div>
+            <div class="flex-1">
+                <div class="font-medium">遇到困难</div>
+                <div class="text-xs text-gray-500 mt-1">14分钟</div>
+            </div>
+            <button class="text-gray-600"><i class="fas fa-play-circle text-xl"></i></button>
+        </div>
+        <div class="episode-item">
+            <div class="episode-number">5</div>
+            <div class="flex-1">
+                <div class="font-medium">不放弃</div>
+                <div class="text-xs text-gray-500 mt-1">10分钟</div>
+            </div>
+            <button class="text-gray-600"><i class="fas fa-play-circle text-xl"></i></button>
+        </div>
+    </div>
+    
+    <!-- 相关推荐 -->
+    <div class="mt-3 px-4 py-3 bg-white">
+        <div class="flex justify-between items-center mb-3">
+            <h2 class="text-lg font-bold">相关推荐</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <div class="story-card bg-gray-100 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-full h-24 object-cover">
+                <div class="p-2">
+                    <div class="text-xs font-medium truncate">森林里的音乐会</div>
+                    <div class="text-xs text-gray-500">12分钟</div>
+                </div>
+            </div>
+            <div class="story-card bg-gray-100 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1588979355313-6711a095465f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-full h-24 object-cover">
+                <div class="p-2">
+                    <div class="text-xs font-medium truncate">勇敢的小熊</div>
+                    <div class="text-xs text-gray-500">8分钟</div>
+                </div>
+            </div>
+            <div class="story-card bg-gray-100 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1513001900722-370f803f498d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-full h-24 object-cover">
+                <div class="p-2">
+                    <div class="text-xs font-medium truncate">小狐狸的冒险</div>
+                    <div class="text-xs text-gray-500">15分钟</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

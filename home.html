@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事屋 - 首页</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background-color: #fff;
+            display: flex;
+            border-top: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 12px;
+        }
+        .tab-item.active {
+            color: #FF5C5C;
+        }
+        .tab-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .story-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .banner-container {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .banner-container::-webkit-scrollbar {
+            display: none;
+        }
+        .mini-player {
+            position: fixed;
+            bottom: 84px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 12px 16px;
+            border-top: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="pb-32">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="flex items-center">
+            <i class="fas fa-signal mr-1"></i>
+            <i class="fas fa-wifi mr-1"></i>
+        </div>
+        <div>12:30</div>
+        <div class="flex items-center">
+            <i class="fas fa-battery-three-quarters"></i>
+        </div>
+    </div>
+    
+    <!-- 头部 -->
+    <div class="px-4 py-3 bg-white">
+        <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold">故事屋</h1>
+            <div class="flex">
+                <button class="mr-3"><i class="fas fa-bell text-gray-600"></i></button>
+                <button><i class="fas fa-calendar-alt text-gray-600"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="px-4 py-3">
+        <!-- 轮播图 -->
+        <div class="banner-container flex mb-6">
+            <img src="https://images.unsplash.com/photo-1512410195580-fb679454a1d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Banner" class="rounded-xl w-[328px] h-[160px] object-cover mr-3">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Banner" class="rounded-xl w-[328px] h-[160px] object-cover">
+        </div>
+        
+        <!-- 今日推荐 -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">今日推荐</h2>
+                <a href="#" class="text-sm text-gray-500">更多 <i class="fas fa-chevron-right text-xs"></i></a>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1478940020726-e9e191651f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-full h-24 object-cover">
+                    <div class="p-2">
+                        <div class="text-xs font-medium truncate">小兔子的梦想</div>
+                        <div class="text-xs text-gray-500">10分钟</div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-full h-24 object-cover">
+                    <div class="p-2">
+                        <div class="text-xs font-medium truncate">森林里的音乐会</div>
+                        <div class="text-xs text-gray-500">12分钟</div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1588979355313-6711a095465f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-full h-24 object-cover">
+                    <div class="p-2">
+                        <div class="text-xs font-medium truncate">勇敢的小熊</div>
+                        <div class="text-xs text-gray-500">8分钟</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 热门故事 -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">热门故事</h2>
+                <a href="#" class="text-sm text-gray-500">更多 <i class="fas fa-chevron-right text-xs"></i></a>
+            </div>
+            <div class="space-y-3">
+                <div class="flex bg-white p-3 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1471440671318-55bdbb772f93?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="ml-3 flex-1">
+                        <div class="font-bold">小猪佩奇历险记</div>
+                        <div class="text-sm text-gray-500 mb-2">讲述了小猪佩奇和她的朋友们的奇妙冒险故事...</div>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span class="mr-2"><i class="fas fa-play-circle mr-1"></i>128万</span>
+                            <span><i class="fas fa-clock mr-1"></i>15分钟</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex bg-white p-3 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1594750852563-5ed8d0b44161?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="ml-3 flex-1">
+                        <div class="font-bold">白雪公主</div>
+                        <div class="text-sm text-gray-500 mb-2">经典童话故事，讲述了美丽的公主与七个小矮人...</div>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span class="mr-2"><i class="fas fa-play-circle mr-1"></i>96万</span>
+                            <span><i class="fas fa-clock mr-1"></i>20分钟</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 年龄分类 -->
+        <div>
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">按年龄段</h2>
+                <a href="#" class="text-sm text-gray-500">全部 <i class="fas fa-chevron-right text-xs"></i></a>
+            </div>
+            <div class="grid grid-cols-4 gap-3">
+                <div class="bg-red-100 rounded-xl p-3 flex flex-col items-center">
+                    <div class="text-red-500 text-2xl mb-1"><i class="fas fa-baby"></i></div>
+                    <div class="text-xs font-medium">0-3岁</div>
+                </div>
+                <div class="bg-yellow-100 rounded-xl p-3 flex flex-col items-center">
+                    <div class="text-yellow-500 text-2xl mb-1"><i class="fas fa-child"></i></div>
+                    <div class="text-xs font-medium">3-6岁</div>
+                </div>
+                <div class="bg-green-100 rounded-xl p-3 flex flex-col items-center">
+                    <div class="text-green-500 text-2xl mb-1"><i class="fas fa-running"></i></div>
+                    <div class="text-xs font-medium">6-9岁</div>
+                </div>
+                <div class="bg-blue-100 rounded-xl p-3 flex flex-col items-center">
+                    <div class="text-blue-500 text-2xl mb-1"><i class="fas fa-user"></i></div>
+                    <div class="text-xs font-medium">9-12岁</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 迷你播放器 -->
+    <div class="mini-player">
+        <img src="https://images.unsplash.com/photo-1478940020726-e9e191651f1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Now Playing" class="w-10 h-10 rounded-lg object-cover">
+        <div class="ml-3 flex-1">
+            <div class="font-medium text-sm">小兔子的梦想</div>
+            <div class="text-xs text-gray-500">正在播放中</div>
+        </div>
+        <button class="mr-4 text-gray-600"><i class="fas fa-pause-circle text-xl"></i></button>
+        <button class="text-gray-600"><i class="fas fa-forward text-xl"></i></button>
+    </div>
+    
+    <!-- 底部标签栏 -->
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>首页</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-compass"></i></div>
+            <div>发现</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-search"></i></div>
+            <div>搜索</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>我的</div>
+        </div>
+    </div>
+</body>
+</html> 

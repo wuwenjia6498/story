@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事屋 - 发现</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background-color: #fff;
+            display: flex;
+            border-top: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 12px;
+        }
+        .tab-item.active {
+            color: #FF5C5C;
+        }
+        .tab-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+        .special-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .special-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+        }
+    </style>
+</head>
+<body class="pb-24">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="flex items-center">
+            <i class="fas fa-signal mr-1"></i>
+            <i class="fas fa-wifi mr-1"></i>
+        </div>
+        <div>12:30</div>
+        <div class="flex items-center">
+            <i class="fas fa-battery-three-quarters"></i>
+        </div>
+    </div>
+    
+    <!-- 头部 -->
+    <div class="px-4 py-3 bg-white">
+        <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold">发现</h1>
+            <div>
+                <button><i class="fas fa-sliders-h text-gray-600"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 分类导航 -->
+    <div class="px-4 py-5 bg-white">
+        <div class="grid grid-cols-5 gap-3">
+            <div class="category-item">
+                <div class="category-icon bg-red-100 text-red-500">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="text-xs">精选</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-orange-100 text-orange-500">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="text-xs">绘本</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-yellow-100 text-yellow-500">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="text-xs">睡前</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-green-100 text-green-500">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="text-xs">科普</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-blue-100 text-blue-500">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="text-xs">童话</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-indigo-100 text-indigo-500">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <div class="text-xs">神话</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-purple-100 text-purple-500">
+                    <i class="fas fa-laugh"></i>
+                </div>
+                <div class="text-xs">幽默</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-pink-100 text-pink-500">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="text-xs">情感</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-gray-100 text-gray-500">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="text-xs">国学</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon bg-gray-100 text-gray-500">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="text-xs">更多</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="mt-3">
+        <!-- 专题合集 -->
+        <div class="px-4 py-3">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">精选专题</h2>
+                <a href="#" class="text-sm text-gray-500">更多 <i class="fas fa-chevron-right text-xs"></i></a>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1516616370751-86d6bd8b0651?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Special" class="w-full h-32 object-cover">
+                    <div class="special-card-overlay">
+                        <div class="font-bold text-sm">环保小卫士</div>
+                        <div class="text-xs opacity-90">10个故事</div>
+                    </div>
+                </div>
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1511097786263-cb7e16474b42?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Special" class="w-full h-32 object-cover">
+                    <div class="special-card-overlay">
+                        <div class="font-bold text-sm">动物奇缘</div>
+                        <div class="text-xs opacity-90">15个故事</div>
+                    </div>
+                </div>
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Special" class="w-full h-32 object-cover">
+                    <div class="special-card-overlay">
+                        <div class="font-bold text-sm">勇气培养</div>
+                        <div class="text-xs opacity-90">12个故事</div>
+                    </div>
+                </div>
+                <div class="special-card">
+                    <img src="https://images.unsplash.com/photo-1576633587382-13ddf37b1fc1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Special" class="w-full h-32 object-cover">
+                    <div class="special-card-overlay">
+                        <div class="font-bold text-sm">传统节日</div>
+                        <div class="text-xs opacity-90">8个故事</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新鲜上线 -->
+        <div class="mt-3 px-4 py-3 bg-white">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">新鲜上线</h2>
+                <a href="#" class="text-sm text-gray-500">更多 <i class="fas fa-chevron-right text-xs"></i></a>
+            </div>
+            <div class="space-y-4">
+                <div class="flex">
+                    <img src="https://images.unsplash.com/photo-1543023036-3da992eec8a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="ml-3 flex-1">
+                        <div class="font-bold">海底小纵队历险记</div>
+                        <div class="text-sm text-gray-500 mb-1">探索海底世界的奇妙冒险</div>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span class="mr-2"><i class="fas fa-play-circle mr-1"></i>3.2万</span>
+                            <span><i class="fas fa-clock mr-1"></i>18分钟</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <img src="https://images.unsplash.com/photo-1607437817193-3b3fd3092dfb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="ml-3 flex-1">
+                        <div class="font-bold">小花猫历险记</div>
+                        <div class="text-sm text-gray-500 mb-1">一只勇敢的小猫咪的故事</div>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span class="mr-2"><i class="fas fa-play-circle mr-1"></i>2.8万</span>
+                            <span><i class="fas fa-clock mr-1"></i>12分钟</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <img src="https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Story" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="ml-3 flex-1">
+                        <div class="font-bold">魔法森林的秘密</div>
+                        <div class="text-sm text-gray-500 mb-1">探索魔法森林的奇妙冒险</div>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span class="mr-2"><i class="fas fa-play-circle mr-1"></i>1.9万</span>
+                            <span><i class="fas fa-clock mr-1"></i>15分钟</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 热门系列 -->
+        <div class="mt-3 px-4 py-3">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-bold">热门系列</h2>
+                <a href="#" class="text-sm text-gray-500">更多 <i class="fas fa-chevron-right text-xs"></i></a>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1471927866530-2b87c8b93b60?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Series" class="w-full h-28 object-cover rounded-lg mb-2">
+                    <div class="font-bold text-sm">米小圈上学记</div>
+                    <div class="text-xs text-gray-500">30个故事</div>
+                </div>
+                <div class="bg-white p-3 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1547463675-12983189710a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Series" class="w-full h-28 object-cover rounded-lg mb-2">
+                    <div class="font-bold text-sm">小猪佩奇系列</div>
+                    <div class="text-xs text-gray-500">25个故事</div>
+                </div>
+                <div class="bg-white p-3 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1528456893149-fb4a1fc38853?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Series" class="w-full h-28 object-cover rounded-lg mb-2">
+                    <div class="font-bold text-sm">365夜故事</div>
+                    <div class="text-xs text-gray-500">40个故事</div>
+                </div>
+                <div class="bg-white p-3 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1538736055252-76b35fb117e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Series" class="w-full h-28 object-cover rounded-lg mb-2">
+                    <div class="font-bold text-sm">安徒生童话</div>
+                    <div class="text-xs text-gray-500">18个故事</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部标签栏 -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>首页</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-compass"></i></div>
+            <div>发现</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-search"></i></div>
+            <div>搜索</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>我的</div>
+        </div>
+    </div>
+</body>
+</html> 
